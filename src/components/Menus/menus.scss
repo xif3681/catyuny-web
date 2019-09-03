@@ -1,0 +1,22 @@
+// Menus
+.Menus {
+  .position-ab {
+    position: absolute;
+    right: 0;
+    z-index: 100;
+  }
+  .ant-menu {
+    background: rgba(0, 0, 0, 0);
+    color:#fafafa;
+  
+  }
+  .ant-menu-item-group-list {
+    color: rgba(0, 0, 0, 0.65)
+  }
+  .ant-menu-horizontal {
+    border-bottom: 0px;
+  }
+  .ant-menu-item-group-title{
+    color: rgb(136, 136, 136)
+  }
+}

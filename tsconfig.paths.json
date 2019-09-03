@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/*"],
+      "@/*": ["src/*"]
+    },
+    "experimentalDecorators": true
+  },
+   "exclude": [
+    "src/assets",
+    "public"
+  ]
+}

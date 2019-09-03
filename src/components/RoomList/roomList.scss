@@ -1,0 +1,101 @@
+//RoomList
+.RoomList {
+
+  @media (max-width: 744px) {
+    .ant-card-meta-title {
+      font-weight: bold !important;
+      font-size: 10px !important;
+      line-height: 13px !important
+    }
+
+    .ant-card-cover {
+      img {
+        height: 106.38px !important;
+      }
+    }
+  
+  
+  }
+  .ant-card-meta-title {
+    text-align: left;
+
+  }
+
+  .ant-card-meta-description {
+    height: 42px;
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+  }
+  ._qhtkbey {
+    line-height: 22px !important;
+    height: 44px !important;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.45);
+    margin: 0px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 2 !important;
+}
+  .ant-card-cover {
+    img {
+      height: 222.22px;
+    }
+  
+  }
+  .ant-card {
+    margin-bottom: 20px;
+  }
+  
+  .more-info{
+    text-align: left;
+    a {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 22px;
+    }
+  }
+  .classfy-title{
+    text-align: left;
+    font-weight: 800 !important;
+    margin-bottom: 0px !important;
+    font-size: 24px !important;
+    line-height: 30px !important;
+    letter-spacing: normal !important;
+    font-family: Circular, "PingFang-SC", "Hiragino Sans GB", "微软雅黑", "Microsoft YaHei", "Heiti SC" !important;
+    text-transform: undefined !important;
+    color: #484848 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+  }
+  .text-left {
+    text-align: left
+  }
+  .metadata{
+    overflow-x: hidden;
+    white-space: nowrap;
+    position: relative;
+    .button-left, .button-right{
+      position: absolute;
+      z-index: 1;
+      top: 40px;
+      margin: 0 !important;
+    }
+    .button-left {
+      left: 0;
+    }
+    .button-right {
+      right: 0;
+    }
+
+  }
+  
+}
