@@ -3,7 +3,7 @@ import { MapStateToPropsParam, MapDispatchToPropsParam, connect } from 'react-re
 import { DispatchFunction } from '@/tsTypes'
 import { Carousel } from 'antd';
 import * as MenusActions from "@/actions/common"
-import { ReduxStore } from 'src/redux/rootReducer'
+import { ReduxStore } from 'src/reducers'
 import Menus from 'src/components/Menus'
 import './carouselPeature.scss'
 import { RoomInfoInterface } from 'src/interface/common';

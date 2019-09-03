@@ -3,7 +3,7 @@ import { MapStateToPropsParam, MapDispatchToPropsParam, connect } from 'react-re
 import { DispatchFunction } from '@/tsTypes'
 import {  Menu, Icon } from 'antd';
 import * as MenusActions from "@/actions/common"
-import { ReduxStore } from 'src/redux/rootReducer'
+import { ReduxStore } from 'src/reducers'
 import './menus.scss'
 const { SubMenu } = Menu;
 

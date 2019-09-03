@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { MapStateToPropsParam, MapDispatchToPropsParam, connect } from 'react-redux';
 import { DispatchFunction } from '@/tsTypes'
 import * as FooterActions from "@/actions/common"
-import { ReduxStore } from 'src/redux/rootReducer'
+import { ReduxStore } from 'src/reducers'
 import './footer.scss'
 
 interface StateProps {

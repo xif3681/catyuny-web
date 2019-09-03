@@ -5,7 +5,7 @@ import { DispatchFunction } from '@/tsTypes'
 import { Card, Col, Row, Radio, Button, Icon, Tabs } from 'antd';
 
 import * as MenusActions from "@/actions/common"
-import { ReduxStore } from 'src/redux/rootReducer'
+import { ReduxStore } from 'src/reducers'
 import { RoomInfoInterface } from 'src/interface/common';
 import './roomList.scss'
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { MapStateToPropsParam, MapDispatchToPropsParam, connect } from 'react-redux';
 import { DispatchFunction } from '@/tsTypes'
 import * as HomeActions from "src/actions/tabs"
-import { ReduxStore } from 'src/redux/rootReducer'
+import { ReduxStore } from 'src/reducers'
 import CarouselPeature from 'src/components/CarouselPeature';
 import RoomList from 'src/components/RoomList';
 
