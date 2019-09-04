@@ -5,7 +5,7 @@ import { DispatchFunction } from '@/tsTypes'
 import {  Menu, Icon } from 'antd';
 import * as MenusActions from "@/actions/common"
 import { ReduxStore } from 'src/reducers'
-import { PAGEINFO } from '@/constants'
+import { PAGEINFO } from 'src/constants/PageInfo'
 import './menus.scss'
 const { SubMenu } = Menu;
 
@@ -46,7 +46,11 @@ class Menus extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
       if (!item.SubMenu) {
         return (
           <Menu.Item key={item.key}>
-            <NavLink to={item.path}><Icon type={item.icon} theme="twoTone" twoToneColor={item.twoToneColor} />{item.label}</NavLink> 
+            <NavLink to={item.path}>
+              <Icon type={item.icon} theme="twoTone" twoToneColor={item.twoToneColor} />
+              {/* <span style={{color: '#fafafa'}}>{item.label}</span> */}
+              <span>{item.label}</span>
+            </NavLink> 
           </Menu.Item>
         )
       } else {
@@ -74,7 +78,6 @@ class Menus extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
     return (
       <div className="Menus">
       < div className="position-ab">
-        {/* <Menu onClick={this.props.handleClick} selectedKeys={[this.props.current]} mode="horizontal" > */}
         <Menu onClick={this.props.handleClick} selectedKeys={[this.props.current]} mode="horizontal" >
           {menuItem}
         </Menu>

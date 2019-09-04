@@ -19,4 +19,10 @@
   .ant-menu-item-group-title{
     color: rgb(136, 136, 136)
   }
+  .ant-menu-horizontal > .ant-menu-item > a {
+    color: #fafafa;
+    &:hover {
+      color: #00acc1
+    }
+  }
 }

@@ -1,16 +1,28 @@
 import React, { Component } from 'react'
+import Moment from 'moment'
 import { MapStateToPropsParam, MapDispatchToPropsParam, connect } from 'react-redux';
 import { DispatchFunction } from '@/tsTypes'
 import { Calendar, Badge } from 'antd';
 import { ReduxStore } from 'src/reducers'
+import * as MenusActions from "@/actions/common"
+import { Tabs, Radio,  Timeline, Icon } from 'antd';
+import  {RECORDTYPE , RECORDDATE} from '@/constants/RecordType'
+import {List} from 'immutable'
 
+const { TabPane } = Tabs;
+let RecordType = List(RECORDTYPE)
+
+interface MyColor {
+  type: 'success' | 'processing' | 'default' | 'error' | 'warning', 
+  content:string
+}
 
 interface StateProps {
   current: string
 }
 
 interface DispatchProps {
-  // handleClick: (e: any) => void
+  handleClick: (e: any) => void
 }
 
 interface OwnProps {
@@ -18,6 +30,8 @@ interface OwnProps {
 }
 
 interface OwnState {
+  mode: "top" | "right" | "bottom" | "left",
+  defaultActiveKey: string
 }
 
 const mapStateToProps: MapStateToPropsParam<StateProps, OwnProps, ReduxStore> = (state) => {
@@ -29,17 +43,28 @@ const mapStateToProps: MapStateToPropsParam<StateProps, OwnProps, ReduxStore> = 
 
 const mapDispatchToProps: MapDispatchToPropsParam<DispatchProps, OwnProps> = (dispatch: DispatchFunction) => {
   return {
-    // handleClick: (e: any) => dispatch(MenusActions.handleClick(e))
+    handleClick: (e: any) => dispatch(MenusActions.handleClick(e))
   }
 }
 class MyCat extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
   constructor(props: StateProps & DispatchProps & OwnProps) {
     super(props)
+    this.props.handleClick({key: 'myCat'})
+    this.state = {
+      mode: 'left',
+      defaultActiveKey: RECORDTYPE[0].id
+    };
+
 
   }
 
+  handleModeChange = (e: any) => {
+    const mode = e.target.value;
+    this.setState({ mode });
+  };
+
   getListData = (value: any) => {
-    let listData;
+    let listData: MyColor[] = [];
     switch (value.date()) {
       case 8:
         listData = [
@@ -70,7 +95,7 @@ class MyCat extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
   }
   
   dateCellRender= (value: any) => {
-    const listData = this.getListData(value);
+    const listData : MyColor[] = this.getListData(value);
     return (
       <ul className="events">
         {listData.length > 0 && listData.map(item => (
@@ -97,14 +122,54 @@ class MyCat extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
       </div>
     ) : null;
   }
+  selectDate = (date: any) => {
+    console.log(Moment(date).format('YYYY-MM-DD HH:mm:ss'))
+  }
+  tabPaneItem = (item: any) => {
+    if(item.id === '000') {
+      return (
+        <Calendar dateCellRender={this.dateCellRender} monthCellRender={this.monthCellRender} onSelect={this.selectDate}/>
+      )
+    } else {
+      const recordData =  List(RECORDDATE)
+      return (
+        <div style={{paddingTop: '15px'}}>
+          <div style={{padding: '15px'}}>{item.name}</div>
+            <Timeline mode="alternate">
+              {recordData.map(item => {
+                if(!item.icon) {
+                  return (
+                    <Timeline.Item color={item.color} key={item.id}>{item.content} | {item.time}</Timeline.Item>
+                  )
+                } else {
+                  return (
+                    <Timeline.Item  dot={<Icon type="clock-circle-o" style={{ fontSize: '16px' }} />}key={item.id}>{item.content} | {item.time}</Timeline.Item>
+                  )
+                }
+              })}
+          </Timeline>
+        </div>
+  
+      )
+    }
+  }
   render() {
+    const recordType = RecordType.set(0, { 'id': '000' ,  'type': 'success', 'name': '总览', 'creatTime': '2019-09-04', 'canDelete': false })
     return (
-      <div style={{paddingTop: '50px'}}>
-        <div>{this.props.current}</div>
-            <Calendar dateCellRender={this.dateCellRender} monthCellRender={this.monthCellRender} />,
+      <div >
+        <div style={{height: '50px', backgroundColor: 'rgba(0, 0, 0, 0.85)'}}></div>
+        <div>
+        <Tabs defaultActiveKey={this.state.defaultActiveKey} tabPosition={this.state.mode} style={{ minHeight: '100vh' }}>
+          {recordType.map((item, i) => (
+            <TabPane tab={item.name} key={item.id}>
+              {this.tabPaneItem(item)}
+            </TabPane>
+          ))}
+        </Tabs>
+       </div>
     
       </div>
-      );
+   );
   }
   
 
