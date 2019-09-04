@@ -6,7 +6,7 @@ import monitorReducersEnhancer from '../enhancers/monitorReducers';
 import resetStoreEnhacer from '../enhancers/resetStore';
 import loggerMiddleware from '../middlewares/logger';
 import rootReducer from 'src/redux/rootReducer';
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 import { StoreInterface } from 'src/tsTypes';
 
 const configureStore = (preloadedState: object) => {

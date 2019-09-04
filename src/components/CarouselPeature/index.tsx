@@ -4,7 +4,6 @@ import { DispatchFunction } from '@/tsTypes'
 import { Carousel } from 'antd';
 import * as MenusActions from "@/actions/common"
 import { ReduxStore } from 'src/reducers'
-import Menus from 'src/components/Menus'
 import './carouselPeature.scss'
 import { RoomInfoInterface } from 'src/interface/common';
 
@@ -36,10 +35,9 @@ const mapDispatchToProps: MapDispatchToPropsParam<DispatchProps, OwnProps> = (di
   }
 }
 class CarouselPeature extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
-  constructor(props: StateProps & DispatchProps & OwnProps) {
-    super(props)
-    // this._bootstrapAsync()
-  }
+  // constructor(props: StateProps & DispatchProps & OwnProps) {
+  //   super(props)
+  // }
   componentDidMount() {
     console.log(this.props.pictureList)
   }
@@ -47,12 +45,12 @@ class CarouselPeature extends Component<StateProps & DispatchProps & OwnProps, O
     return (
       <div className="CarouselPeature">
       < div className="position-re">
-        <Menus />
+        {/* <Menus /> */}
         <Carousel autoplay speed={1000} >
           {this.props.pictureList.room_list.map((item, index) => {
             return (
               <div key={index}>
-                <img width={300} src={item.image} className="peature" />
+                <img width={300} src={item.image} className="peature" alt="图片"/>
               </div>
 
             )

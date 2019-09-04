@@ -32,9 +32,9 @@ const mapDispatchToProps: MapDispatchToPropsParam<DispatchProps, OwnProps> = (di
   }
 }
 class Footer extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
-  constructor(props: StateProps & DispatchProps & OwnProps) {
-    super(props)
-  }
+  // constructor(props: StateProps & DispatchProps & OwnProps) {
+  //   super(props)
+  // }
   render() {
     return (
       < div className="Footer">

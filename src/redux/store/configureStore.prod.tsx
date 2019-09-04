@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 import resetStoreEnhacer from '../enhancers/resetStore';
 
 import rootReducer from 'src/redux/rootReducer';
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 
 const configureStore = (preloadedState: object) => {
   const middlewaresEnhancer = applyMiddleware(thunkMiddleware);

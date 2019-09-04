@@ -1,11 +1,12 @@
 import * as React from 'react'
-import Loadable, { LoadingComponentProps, LoadableComponent, OptionsWithRender } from 'react-loadable'
+import Loadable, { LoadingComponentProps, } from 'react-loadable'
 
 import { Button } from 'antd'
 import LoadSpin from './LoadSpin'
 
 const LoadableLoads = (params: LoadingComponentProps) => {
-  const { isLoading, pastDelay, timedOut, retry, error } = params
+  // const { isLoading, pastDelay, timedOut, retry, error } = params
+  const {pastDelay, error } = params
 
   // 重载
   const reload = () => window.location.reload()

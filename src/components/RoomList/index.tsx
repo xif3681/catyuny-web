@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { MapStateToPropsParam, MapDispatchToPropsParam, connect } from 'react-redux';
 import { NavLink } from 'react-router-dom'
 import { DispatchFunction } from '@/tsTypes'
-import { Card, Col, Row, Radio, Button, Icon, Tabs } from 'antd';
+import { Card, Col, Row, Tabs } from 'antd';
 
 import * as MenusActions from "@/actions/common"
 import { ReduxStore } from 'src/reducers'
@@ -40,10 +40,10 @@ const mapDispatchToProps: MapDispatchToPropsParam<DispatchProps, OwnProps> = (di
   }
 }
 class RoomList extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
-  constructor(props: StateProps & DispatchProps & OwnProps) {
-    super(props)
+  // constructor(props: StateProps & DispatchProps & OwnProps) {
+  //   super(props)
 
-  }
+  // }
 
 
   render() {
