@@ -5,7 +5,7 @@ import thunkMiddleware from 'redux-thunk';
 import monitorReducersEnhancer from '../enhancers/monitorReducers';
 import resetStoreEnhacer from '../enhancers/resetStore';
 import loggerMiddleware from '../middlewares/logger';
-import rootReducer from 'src/redux/rootReducer';
+import rootReducer from 'src/reducers/rootReducer';
 // import { combineReducers } from 'redux';
 import { StoreInterface } from 'src/tsTypes';
 
@@ -18,7 +18,7 @@ const configureStore = (preloadedState: object) => {
   store._reducer = rootReducer;
 
   if (module.hot) {
-    module.hot.accept('@/redux/rootReducer', () => store.replaceReducer(rootReducer));
+    module.hot.accept('@/reducers/rootReducer', () => store.replaceReducer(rootReducer));
   }
 
   return store;

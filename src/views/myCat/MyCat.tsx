@@ -5,12 +5,11 @@ import { DispatchFunction } from '@/tsTypes'
 import { Calendar, Badge } from 'antd';
 import { ReduxStore } from 'src/reducers'
 import * as MenusActions from "@/actions/common"
-import { Tabs, Radio,  Timeline, Icon } from 'antd';
-import  {RECORDTYPE , RECORDDATE} from '@/constants/RecordType'
+import { Tabs,  Timeline, Icon } from 'antd';
+import { RecordTypeInterface , RecordDataInterface} from 'src/interface';
 import {List} from 'immutable'
 
 const { TabPane } = Tabs;
-let RecordType = List(RECORDTYPE)
 
 interface MyColor {
   type: 'success' | 'processing' | 'default' | 'error' | 'warning', 
@@ -18,7 +17,9 @@ interface MyColor {
 }
 
 interface StateProps {
-  current: string
+  current: string, 
+  recordData: List<RecordDataInterface>,
+  recordType: List<RecordTypeInterface>,
 }
 
 interface DispatchProps {
@@ -36,7 +37,10 @@ interface OwnState {
 
 const mapStateToProps: MapStateToPropsParam<StateProps, OwnProps, ReduxStore> = (state) => {
   return {
-    current: state.get('menusCurrent').get('current')
+    current: state.get('menusCurrent').get('current'),
+    recordData: List(state.get('recordData').get('data')),
+    recordType: List(state.get('recordType').get('data')),
+
   }
 }
 
@@ -52,7 +56,7 @@ class MyCat extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
     this.props.handleClick({key: 'myCat'})
     this.state = {
       mode: 'left',
-      defaultActiveKey: RECORDTYPE[0].id
+      defaultActiveKey: '000'
     };
 
 
@@ -131,12 +135,11 @@ class MyCat extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
         <Calendar dateCellRender={this.dateCellRender} monthCellRender={this.monthCellRender} onSelect={this.selectDate}/>
       )
     } else {
-      const recordData =  List(RECORDDATE)
       return (
         <div style={{paddingTop: '15px'}}>
           <div style={{padding: '15px'}}>{item.name}</div>
             <Timeline mode="alternate">
-              {recordData.map(item => {
+              {this.props.recordData.map(item => {
                 if(!item.icon) {
                   return (
                     <Timeline.Item color={item.color} key={item.id}>{item.content} | {item.time}</Timeline.Item>
@@ -154,7 +157,7 @@ class MyCat extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
     }
   }
   render() {
-    const recordType = RecordType.set(0, { 'id': '000' ,  'type': 'success', 'name': '总览', 'creatTime': '2019-09-04', 'canDelete': false })
+    const recordType =  this.props.recordType.set(0, { 'id': '000' ,  'type': 'success', 'name': '总览', 'creatTime': '2019-09-04', 'canDelete': false })
     return (
       <div >
         <div style={{height: '50px', backgroundColor: 'rgba(0, 0, 0, 0.85)'}}></div>

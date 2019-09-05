@@ -3,7 +3,7 @@ import thunkMiddleware from 'redux-thunk';
 
 import resetStoreEnhacer from '../enhancers/resetStore';
 
-import rootReducer from 'src/redux/rootReducer';
+import rootReducer from 'src/reducers/rootReducer';
 // import { combineReducers } from 'redux';
 
 const configureStore = (preloadedState: object) => {

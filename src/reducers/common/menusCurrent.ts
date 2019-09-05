@@ -1,5 +1,5 @@
 
-import { CommmonActionTypes} from "@/constants/actionTypes"
+import { CommmonActionTypes} from "src/constants/actionTypes"
 
 import { Map } from 'immutable'
 

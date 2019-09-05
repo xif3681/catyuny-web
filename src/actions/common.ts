@@ -1,6 +1,6 @@
 import { Dispatch } from "redux"
 import { createAction } from "redux-actions"
-import { CommmonActionTypes} from "@/constants/actionTypes"
+import { CommmonActionTypes} from "src/constants/actionTypes"
 import * as HomeService from '@/services/home'
 
 export const handleClick = (e: any) => (dispatch: Dispatch) => {

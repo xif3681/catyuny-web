@@ -1,11 +1,13 @@
 import { Map } from 'immutable'
-import { Tabs } from "src/interface/tabs"
+import { Tabs, RecordType, RecordData  } from "src/interface"
 import { MenusCurrent, RoomInfo } from "@/interface/common"
 
 export interface Store {
   menusCurrent:ReduxStoreItemState<MenusCurrent>
   roomInfo:ReduxStoreItemState<RoomInfo>
   tabs: ReduxStoreItemState<Tabs>,
+  recordType: ReduxStoreItemState<RecordType>,
+  recordData: ReduxStoreItemState<RecordData>,
 }
 
 export interface ReduxStore extends Map<keyof Store, any> {

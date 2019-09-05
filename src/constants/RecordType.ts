@@ -1,18 +1,4 @@
-interface RecordTypeInterface {
-  id: string,
-  type: string,
-  name: string,
-  creatTime: string,
-  canDelete: boolean
-}
-interface RecordTypeDataInterface {
-  id: string,
-  type: string,
-  content: string,
-  time: string,
-  color?:string,
-  icon?: string
-}
+import { RecordTypeInterface, RecordDataInterface } from "src/interface"
 export const RECORDTYPE : RecordTypeInterface[] = [
   {'id': '001' ,  'type': 'success', 'name': '驱虫', 'creatTime': '2019-09-04', 'canDelete': false },
   {'id': '002' ,  'type': 'success', 'name': '打针', 'creatTime': '2019-09-04', 'canDelete': false },
@@ -21,7 +7,7 @@ export const RECORDTYPE : RecordTypeInterface[] = [
   {'id': '005' ,  'type': 'success', 'name': '体重', 'creatTime': '2019-09-04', 'canDelete': false },
  ]
 
- export const RECORDDATE: RecordTypeDataInterface[] = [
+ export const RECORDDATE: RecordDataInterface[] = [
   {"id": "0001" ,  "type": "success", "content": "This is usual event.", "time": "2019-09-04", color: "red", icon: 'clock-circle-o' },
   {"id": "0002" ,  "type": "success", "content": "This is usual event.", "time": "2019-09-04", color: "red",  },
   {"id": "0003" ,  "type": "success", "content": "This is usual event.", "time": "2019-09-04", color: "red",  },

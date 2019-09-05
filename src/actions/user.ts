@@ -6,7 +6,7 @@ import * as Service from 'src/services/authBI'
 
 import { setCookie } from '@/utils/cookie'
 
-import { UserActionTypes } from "@/constants/actionTypes"
+import { UserActionTypes } from "src/constants/actionTypes"
 import { UserInfo } from "src/interface/user"
 import { GlobalState } from "@/interface/state"
 

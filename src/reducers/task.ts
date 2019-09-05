@@ -1,6 +1,6 @@
 import { Action } from "redux-actions"
 import { Map } from 'immutable'
-import { HomeActionTypes } from '@/constants/actionTypes'
+import { HomeActionTypes } from 'src/constants/actionTypes'
 
 export default (state=Map({}), { type, payload }: Action<{ id: string, data?: any, error?: Error }>) => {
   switch (type) {

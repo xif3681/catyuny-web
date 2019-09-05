@@ -2,7 +2,7 @@
 import { Map } from 'immutable'
 
 import {  Action } from "redux-actions"
-import { HomeActionTypes } from "@/constants/actionTypes"
+import { HomeActionTypes } from "src/constants/actionTypes"
 const tabs = {
   count: 0
 }

@@ -1,11 +1,4 @@
-interface PageItemInterface {
-  path: string,
-  icon: string,
-  label: string,
-  twoToneColor: string,
-  key: string,
-  SubMenu: boolean,
-}
+// PageInfoInterface
 
 export interface PageInfoInterface {
   path: string,
@@ -15,4 +8,39 @@ export interface PageInfoInterface {
   key: string,
   SubMenu: boolean,
   children? : Array<PageInfoInterface>
+}
+
+// Tabs
+export interface Tabs {
+  count: Number,
+}
+
+
+// Recordtype
+export interface RecordTypeInterface {
+  id: string,
+  type: string,
+  name: string,
+  creatTime: string,
+  canDelete: boolean
+}
+
+export interface RecordType {
+  status: number,
+  data: Array<RecordTypeInterface>
+}
+
+// RecordData
+export interface RecordDataInterface {
+  id: string,
+  type: string,
+  content: string,
+  time: string,
+  color?:string,
+  icon?: string
+}
+
+export interface RecordData {
+  status: number,
+  data: Array<RecordDataInterface>
 }
