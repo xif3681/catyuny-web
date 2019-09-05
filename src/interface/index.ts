@@ -1,3 +1,14 @@
+export interface ReduxStoreAsyncState<T> {
+	isLoading? : boolean
+	error?: Error
+	message?: string
+	isDirty?: boolean
+	status?: number
+	data?: T
+}
+
+
+
 // PageInfoInterface
 
 export interface PageInfoInterface {
@@ -26,6 +37,10 @@ export interface RecordTypeInterface {
 }
 
 export interface RecordType {
+  // isLoading? : boolean
+	// error?: Error
+	// message?: string
+	// isDirty?: boolean
   status: number,
   data: Array<RecordTypeInterface>
 }
@@ -41,6 +56,10 @@ export interface RecordDataInterface {
 }
 
 export interface RecordData {
+  // isLoading? : boolean
+	// error?: Error
+	// message?: string
+	// isDirty?: boolean
   status: number,
   data: Array<RecordDataInterface>
 }

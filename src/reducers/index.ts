@@ -6,8 +6,10 @@ export interface Store {
   menusCurrent:ReduxStoreItemState<MenusCurrent>
   roomInfo:ReduxStoreItemState<RoomInfo>
   tabs: ReduxStoreItemState<Tabs>,
-  recordType: ReduxStoreItemState<RecordType>,
-  recordData: ReduxStoreItemState<RecordData>,
+  recordType: ReduxStoreAsyncItemState<RecordType>,
+  recordData: ReduxStoreAsyncItemState<RecordData>,
+  // recordType: ReduxStoreAsyncItemState<RecordType>,
+  // recordData: ReduxStoreAsyncItemState<RecordData>,
 }
 
 export interface ReduxStore extends Map<keyof Store, any> {
@@ -19,7 +21,8 @@ interface ReduxStoreAsyncState<T> {
 	error?: Error
 	message?: string
 	isDirty?: boolean
-	data?: T
+	status: number
+	data: T
 }
 
 export interface ReduxStoreAsyncItemState<T> extends Map<keyof ReduxStoreAsyncState<T>, any> {

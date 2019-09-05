@@ -175,6 +175,7 @@ class MyCat extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
           <div style={{padding: '15px'}}>{item.name}</div>
             <Timeline mode="alternate">
               {this.props.recordData.map(item => {
+                if(!item) return
                 if(!item.icon) {
                   return (
                     <Timeline.Item color={item.color} key={item.id}>{item.content} | {item.time}</Timeline.Item>
@@ -231,11 +232,14 @@ class MyCat extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
         <div style={{height: '50px', backgroundColor: 'rgba(0, 0, 0, 0.85)'}}></div>
         <div>
         <Tabs defaultActiveKey={this.state.defaultActiveKey} tabPosition='left' style={{ minHeight: '100vh' }}>
-          {recordType.map((item, i) => (
-            <TabPane tab={item.name} key={item.id}>
-              {this.tabPaneItem(item)}
-            </TabPane>
-          ))}
+          {recordType.map((item, i) => {
+            if(!item) return
+            return (
+              <TabPane tab={item.name} key={item.id}>
+                {this.tabPaneItem(item)}
+              </TabPane>
+            )
+          })}
         </Tabs>
        </div>
        <Modal

@@ -2,7 +2,8 @@ import { Action } from 'redux-actions'
 import { RecordActionTypes } from 'src/constants/actionTypes'
 import { Map } from 'immutable'
 import  { RECORDDATE} from '@/constants/RecordType'
-const recordData = {
+import { ReduxStoreAsyncState, RecordDataInterface } from '@/interface'
+const recordData : ReduxStoreAsyncState<Array<RecordDataInterface>>= {
   status: 200,
   data: RECORDDATE
 }
@@ -18,7 +19,6 @@ export default (state = Map(recordData), { type, payload }: Action<any>) => {
       return state.merge({
         isLoading: false,
         data: payload,
-        updatedAt: new Date()
       })
     case RecordActionTypes.RECORDTYPE_ERROR:
       return state.merge({
