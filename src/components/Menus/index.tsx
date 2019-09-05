@@ -80,6 +80,13 @@ class Menus extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
       < div className="position-ab">
         <Menu onClick={this.props.handleClick} selectedKeys={[this.props.current]} mode="horizontal" >
           {menuItem}
+          <Menu.Item key='inform'>
+        
+              <Icon type='message' theme="twoTone" twoToneColor='#ff0000' />
+              {/* <span style={{color: '#fafafa'}}>{item.label}</span> */}
+              <span>消息</span>
+ 
+          </Menu.Item>
         </Menu>
       </div >
       </div>

@@ -5,11 +5,16 @@ import { DispatchFunction } from '@/tsTypes'
 import { Calendar, Badge } from 'antd';
 import { ReduxStore } from 'src/reducers'
 import * as MenusActions from "@/actions/common"
-import { Tabs,  Timeline, Icon } from 'antd';
+import { Tabs,  Timeline, Icon , Modal, Form,
+  Input,
+  Select,} from 'antd';
+  import { FormComponentProps } from 'antd/lib/form'
 import { RecordTypeInterface , RecordDataInterface} from 'src/interface';
 import {List} from 'immutable'
 
 const { TabPane } = Tabs;
+const { Option } = Select;
+const { TextArea } = Input;
 
 interface MyColor {
   type: 'success' | 'processing' | 'default' | 'error' | 'warning', 
@@ -26,13 +31,16 @@ interface DispatchProps {
   handleClick: (e: any) => void
 }
 
-interface OwnProps {
+interface OwnProps extends FormComponentProps {
 
 }
 
 interface OwnState {
-  mode: "top" | "right" | "bottom" | "left",
-  defaultActiveKey: string
+  // mode: "top" | "right" | "bottom" | "left",
+  defaultActiveKey: string,
+  ModalText: string,
+  visible: boolean,
+  confirmLoading: boolean,
 }
 
 const mapStateToProps: MapStateToPropsParam<StateProps, OwnProps, ReduxStore> = (state) => {
@@ -55,18 +63,43 @@ class MyCat extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
     super(props)
     this.props.handleClick({key: 'myCat'})
     this.state = {
-      mode: 'left',
-      defaultActiveKey: '000'
+      defaultActiveKey: '000',
+      ModalText: 'Content of the modal',
+      visible: false,
+      confirmLoading: false,
     };
 
 
   }
-
-  handleModeChange = (e: any) => {
-    const mode = e.target.value;
-    this.setState({ mode });
+ // modal
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
   };
 
+  handleOk = () => {
+    this.setState({
+      ModalText: 'The modal will be closed after two seconds',
+      confirmLoading: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        visible: false,
+        confirmLoading: false,
+      });
+    }, 2000);
+  };
+
+  handleCancel = () => {
+    console.log('Clicked cancel button');
+    this.setState({
+      visible: false,
+    });
+  };
+
+
+  // calader
   getListData = (value: any) => {
     let listData: MyColor[] = [];
     switch (value.date()) {
@@ -128,7 +161,9 @@ class MyCat extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
   }
   selectDate = (date: any) => {
     console.log(Moment(date).format('YYYY-MM-DD HH:mm:ss'))
+    this.showModal()
   }
+
   tabPaneItem = (item: any) => {
     if(item.id === '000') {
       return (
@@ -156,13 +191,46 @@ class MyCat extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
       )
     }
   }
+
+  // selete
+   onCatChange = (value: any) => {
+    console.log(`selected ${value}`);
+  }
+  
+   onTypeChange = (value: any) => {
+    console.log(`selected ${value}`);
+  }
+  
+   onBlur = () => {
+    console.log('blur');
+  }
+  
+   onFocus = () => {
+    console.log('focus');
+  }
+  
+   onSearch = (val: any) => {
+    console.log('search:', val);
+  }
   render() {
     const recordType =  this.props.recordType.set(0, { 'id': '000' ,  'type': 'success', 'name': '总览', 'creatTime': '2019-09-04', 'canDelete': false })
+    const { visible, confirmLoading, ModalText } = this.state;
+    const { getFieldDecorator } = this.props.form;
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 4 },
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 20 },
+      },
+    };
     return (
       <div >
         <div style={{height: '50px', backgroundColor: 'rgba(0, 0, 0, 0.85)'}}></div>
         <div>
-        <Tabs defaultActiveKey={this.state.defaultActiveKey} tabPosition={this.state.mode} style={{ minHeight: '100vh' }}>
+        <Tabs defaultActiveKey={this.state.defaultActiveKey} tabPosition='left' style={{ minHeight: '100vh' }}>
           {recordType.map((item, i) => (
             <TabPane tab={item.name} key={item.id}>
               {this.tabPaneItem(item)}
@@ -170,6 +238,70 @@ class MyCat extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
           ))}
         </Tabs>
        </div>
+       <Modal
+          title="创建新记录"
+          visible={visible}
+          onOk={this.handleOk}
+          confirmLoading={confirmLoading}
+          onCancel={this.handleCancel}
+        >
+        <Form  className="login-form" {...formItemLayout}>
+          <Form.Item label="喵主子">
+            {getFieldDecorator('cat', {
+              rules: [{ required: true, message: 'Please input your username!' }],
+            })(
+              <Select
+              showSearch
+              style={{ width: 200 }}
+              placeholder="Select a cat"
+              optionFilterProp="children"
+              onChange={this.onCatChange}
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
+              onSearch={this.onSearch}
+              filterOption={(input, option: any) =>
+                option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              <Option value="jack">Jack</Option>
+              <Option value="lucy">Lucy</Option>
+              <Option value="tom">Tom</Option>
+            </Select>,
+            )}
+          </Form.Item>
+          <Form.Item label="类型">
+            {getFieldDecorator('type', {
+              rules: [{ required: true, message: 'Please input your Password!' }],
+            })(
+              <Select
+              showSearch
+              style={{ width: 200 }}
+              placeholder="Select a type"
+              optionFilterProp="children"
+              onChange={this.onTypeChange}
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
+              onSearch={this.onSearch}
+              filterOption={(input, option: any) =>
+                option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              <Option value="jack">Jack</Option>
+              <Option value="lucy">Lucy</Option>
+              <Option value="tom">Tom</Option>
+            </Select>,
+            )}
+          </Form.Item>
+          <Form.Item label="内容">
+          {getFieldDecorator('content', {
+              rules: [{ required: true, message: 'Please input your Password!' }],
+            })(
+              <TextArea rows={4} />
+            )}
+
+          </Form.Item>
+        </Form>
+        </Modal>
     
       </div>
    );
@@ -180,4 +312,4 @@ class MyCat extends Component<StateProps & DispatchProps & OwnProps, OwnState> {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MyCat)
+)(Form.create()(MyCat))
