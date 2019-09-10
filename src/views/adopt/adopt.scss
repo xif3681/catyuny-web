@@ -1,4 +1,4 @@
-.toolbarClassName, .editorClassName{
+.toolbarClassName, .editorClassName, .border-style{
   border: 1px solid #F1F1F1 !important;
   padding: 5px !important;
   border-radius: 2px !important;
@@ -8,7 +8,22 @@
   // height: 275px !important;
 
 }
+.ant-input {
+  border-color: #F1F1F1 !important;
+  &hover, &foucs {
+    border-color: #F1F1F1 !important;
+    border-bottom: 0 !important;
+    box-shadow: none;
+  
+  }
 
+}
 .wrapperClassName {
-  padding: 30px
+  // padding-top: 30px;
+  // padding-right: 30px;
+  // padding-left: 30px;
+}
+
+.ant-upload-picture-card-wrapper {
+  width:  100%;
 }
